@@ -2,19 +2,19 @@ import './App.css'
 
 const ResultLine = () => {
   return (
-    <div>
+    <div className='result-line'>
       <div>
-        <p>Type of data</p>
-        <p>/ person</p>
+        <p className='result-type'>Type of data</p>
+        <p className='pro-person'>/ person</p>
       </div>
-      <div>$4.27</div>
+      <div className='amount'>$4.27</div>
     </div>
   )
 }
 
 const Results = () => {
   return (
-    <div>
+    <div className='results'>
       <ResultLine />
       <ResultLine />
       <button>RESET</button>
@@ -24,15 +24,15 @@ const Results = () => {
 
 const Tip = () => {
   return (
-    <div>
+    <div className='tip'>
       <p>Select Tip %</p>
-      <div>
-        <div>5%</div>
-        <div>10%</div>
-        <div>15%</div>
-        <div>25%</div>
-        <div>50%</div>
-        <div>Custom</div>
+      <div className='tip-grid'>
+        <div className='tip-elem'>5%</div>
+        <div className='tip-elem'>10%</div>
+        <div className='tip-elem'>15%</div>
+        <div className='tip-elem'>25%</div>
+        <div className='tip-elem'>50%</div>
+        <div className='tip-elem tip-elem-custom'>Custom</div>
       </div>
     </div>
   )
@@ -40,9 +40,9 @@ const Tip = () => {
 
 const ChoiceLine = () => {
   return (
-    <div>
+    <div className='choice'>
       <p>Type of choice</p>
-      <div>
+      <div className='choiceLine'>
         <img></img>
         <span>142.55 / 5</span>
       </div>
@@ -52,7 +52,7 @@ const ChoiceLine = () => {
 
 const Parameters = () => {
   return (
-    <div>
+    <div className='parameters'>
       <ChoiceLine />
       <Tip />
       <ChoiceLine />
@@ -62,7 +62,7 @@ const Parameters = () => {
 
 const Card = () => {
   return (
-    <div>
+    <div className='card'>
       <Parameters />
       <Results />
     </div>
@@ -73,9 +73,7 @@ const App = () => {
 
   return (
     <>
-      <div>
-        <img></img>
-      </div>
+      <img></img>
       <Card />
     </>
   )
