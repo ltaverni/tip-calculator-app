@@ -32,7 +32,7 @@ const Tip = () => {
         <div className='tip-elem'>15%</div>
         <div className='tip-elem'>25%</div>
         <div className='tip-elem'>50%</div>
-        <div className='tip-elem tip-elem-custom'>Custom</div>
+        <input className='tip-elem tip-elem-custom' type='text' placeholder='Custom' />
       </div>
     </div>
   )
@@ -44,7 +44,7 @@ const ChoiceLine = () => {
       <p>Type of choice</p>
       <div className='choiceLine'>
         <img></img>
-        <span>142.55 / 5</span>
+        <input className='choice-input' type='text' value='142.55 / 5' />
       </div>
     </div>
   )
