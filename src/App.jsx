@@ -109,13 +109,17 @@ const App = () => {
     if (input.includes(" ") || input.startsWith("0"))
       return
     
+    if (input === "") {
+      setFunction(0);
+      return
+    }
+
     const updateValue = Number(e.target.value);
     if (isNaN(updateValue)) {
-      console.log("NaN !!")
       return;
     }
 
-    setFunction(e.target.value);
+    setFunction(updateValue);
   }
 
   const handleReset = (e) => {
