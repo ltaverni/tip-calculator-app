@@ -109,9 +109,19 @@ body,
   font-size: 24px;
 }
 
-div.tip-elem:hover {
+button.tip-elem {
+  min-width: 4.8em;
+  max-width: 4.8em;
+}
+
+button.tip-elem:hover {
   background-color: hsl(185, 41%, 84%);
   color: hsl(183, 100%, 15%);
+}
+
+button.tip-elem.selected {
+  color: hsl(183, 100%, 15%);
+  background-color: hsl(172, 67%, 45%);
 }
 
 .tip-elem-custom {
@@ -132,6 +142,11 @@ input.tip-elem-custom:focus {
   border: solid 2px hsl(172, 67%, 45%);
   padding: calc(0.2em - 2px) calc(0.4em - 2px) calc(0.2em - 2px) calc(0.4em - 2px);
 } 
+
+input.tip-elem-custom.selected {
+  border: solid 2px hsl(172, 67%, 45%);
+  padding: calc(0.2em - 2px) calc(0.4em - 2px) calc(0.2em - 2px) calc(0.4em - 2px);
+}
 
 .result-line {
   margin-top: 1em;
@@ -184,4 +199,8 @@ input {
   font-size: 24px;
   font-weight: 700;
   font-family: 'Space Mono';
+}
+
+button {
+  border: none;
 }

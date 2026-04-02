@@ -17,7 +17,11 @@ const ResultLine = ({name, value}) => {
   )
 }
 
-const Results = ({tip, peopleNumber, handleReset}) => {
+const Results = ({
+  tip,
+  peopleNumber,
+  handleReset
+}) => {
   const tipProPerson = (peopleNumber === 0) ? 0 : tip / peopleNumber;
 
   return (
@@ -29,17 +33,29 @@ const Results = ({tip, peopleNumber, handleReset}) => {
   )
 }
 
-const Tip = ({tip, setParameter, setTip}) => {
+const Tip = ({
+  tip,
+  setParameter,
+  setTip,
+  tipList,
+  selectedTip,
+  setSelectedTip
+}) => {
+  const handleClick = (selected, tip) => {
+    setSelectedTip(selected);
+    setTip(tip);
+  }
+  console.log(tip);
+  
   return (
     <div className='tip'>
       <p>Select Tip %</p>
       <div className='tip-grid'>
-        <div className='tip-elem'>5%</div>
-        <div className='tip-elem'>10%</div>
-        <div className='tip-elem'>15%</div>
-        <div className='tip-elem'>25%</div>
-        <div className='tip-elem'>50%</div>
-        <input className='tip-elem tip-elem-custom' type='text' placeholder='Custom' value={tip} onChange={(e) => setParameter(e, setTip)} />
+        {tipList.map(key => (
+          <button key={key} className={'tip-elem ' + ((key === selectedTip) ? 'selected' : '')} onClick={() => handleClick(key, Number(key))} >{key}%</button>
+        ))} 
+        
+        <input className={'tip-elem tip-elem-custom ' + ((selectedTip === 'custom') ? 'selected' : '')} type='text' placeholder='Custom' value={tip} onChange={(e) => setParameter(e, setTip)} onClick={(e) => handleClick('custom', e.target.value)} />
       </div>
     </div>
   )
@@ -57,7 +73,7 @@ const ChoiceLine = ({name, value, setParameter, setFunction}) => {
   )
 }
 
-const Parameters = ({bill, tip, peopleNumber, setParameter, setBill, setTip, setPeopleNumber}) => {
+const Parameters = ({ bill, tip, peopleNumber, setParameter, setBill, setTip, setPeopleNumber, tipList, selectedTip, setSelectedTip }) => {
   return (
     <div className='parameters'>
       <ChoiceLine
@@ -68,7 +84,10 @@ const Parameters = ({bill, tip, peopleNumber, setParameter, setBill, setTip, set
       <Tip
         tip={tip}
         setParameter={setParameter}
-        setTip={setTip} />
+        setTip={setTip}
+        tipList= {tipList}
+        selectedTip={selectedTip}
+        setSelectedTip={setSelectedTip} />
       <ChoiceLine
         name='Number of People'
         value={peopleNumber}
@@ -78,7 +97,7 @@ const Parameters = ({bill, tip, peopleNumber, setParameter, setBill, setTip, set
   )
 }
 
-const Card = ({bill, tip, peopleNumber, setParameter, setBill, setTip, setPeopleNumber, handleReset}) => {
+const Card = ({ bill, tip, peopleNumber, setParameter, setBill, setTip, setPeopleNumber, handleReset, tipList, selectedTip, setSelectedTip }) => {
   const tipValue = calculateTip(bill, tip);
 
   return (
@@ -90,7 +109,10 @@ const Card = ({bill, tip, peopleNumber, setParameter, setBill, setTip, setPeople
         setParameter={setParameter}
         setBill={setBill}
         setTip={setTip}
-        setPeopleNumber={setPeopleNumber} />
+        setPeopleNumber={setPeopleNumber}
+        tipList={tipList}
+        selectedTip={selectedTip}
+        setSelectedTip={setSelectedTip} />
       <Results tip={tipValue} peopleNumber={peopleNumber} handleReset={handleReset} />
     </div>
   )
@@ -100,6 +122,9 @@ const App = () => {
   const [bill, setBill] = useState(0);
   const [tip, setTip] = useState(0);
   const [peopleNumber, setPeopleNumber] = useState(0);
+  const [selectedTip, setSelectedTip] = useState(null);
+
+  const tipList = ["5", "10", "15", "25", "50"];
 
   const setParameter = (e, setFunction) => {
     e.preventDefault();
@@ -128,6 +153,7 @@ const App = () => {
     setBill(0);
     setTip(0);
     setPeopleNumber(0);
+    setSelectedTip(0)
   }
 
   return (
@@ -141,7 +167,10 @@ const App = () => {
         setBill={setBill}
         setTip={setTip}
         setPeopleNumber={setPeopleNumber}
-        handleReset={handleReset} />
+        handleReset={handleReset}
+        tipList={tipList}
+        selectedTip={selectedTip}
+        setSelectedTip={setSelectedTip} />
     </>
   )
 }
